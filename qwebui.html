@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="app" class="container">
+      <nav class="navbar navbar-light bg-faded navbar-toggleable-md">
+        <h1 class="navbar-brand mb-0">qWebUI</h1>
+        <connform :connection_text="connection_text" :hostport="hostport"></connform>
+      </nav>
+      <div id="codescreen">
+        <codeediting :codetosend="codetosend" :lastmsg="lastmsg"></codeediting>
+      </div>
+      Link to these results: <code>{{shareurl}}</code>
+    </div>
+    <template id="repl">
+      <div>
+        <pre><code>{{lastmsg}}</code></pre><br />
+        <textarea v-model="codetosend" placeholder="add multiple lines" class="form-control" rows=5></textarea>
+        <button type="button" class="btn btn-primary" v-on:click.prevent="qsend">Send</button>
+      </div>
+    </template>
+    <template id="connform">
+      <div class="collapse navbar-collapse justify-content-end">
+        <span class="navbar-text">{{connection_text}}</span>
+        <form class="form-inline">
+          <input v-model="hostport" class="form-control mr-sm-2" type="text" placeholder="host:port">
+          <button v-on:click.prevent="qconnect" class="btn btn-outline-success my-2 my-sm-0" type="submit">Connect</button>
+        </form>
+      </div>
+    </template>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
